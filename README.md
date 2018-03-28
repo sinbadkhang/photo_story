@@ -1,1 +1,1 @@
-Photostory Project
+Photostory Project 1
