@@ -25,8 +25,14 @@ function getQuiz () {
 			var imagePath = (quizs.image).substring(6);
 			
 			rows += "<tr id='"+quizs.id+"'>";
-			rows += "<td class='image'><img class='thumbnail' src='image/"+imagePath+"'></td>"
+			rows += "<td class='image'><img class='thumbnail' src='image/"+imagePath+"'></td>";
 			rows += "<td class='question'>"+quizs.question+'</td>';
+			
+			rows += "<td class='question'>"+quizs.choice1+'</td>';
+			rows += "<td class='question'>"+quizs.choice2+'</td>';
+			rows += "<td class='question'>"+quizs.choice3+'</td>';
+			rows += "<td class='question'>"+quizs.choice4+'</td>';
+			
 			rows += "<td class='answer'>"+quizs.answer+'</td>';
 			rows += '<td>';
 			rows += "	<button class='btn btn-primary up'> Update</button>";

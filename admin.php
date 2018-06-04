@@ -20,6 +20,10 @@
 				<tr>
 					<th>Image</th>
 					<th>Question</th>
+					<th>Choice 1</th>
+					<th>Choice 2</th>
+					<th>Choice 3</th>
+					<th>Choice 4</th>
 					<th>Answer</th>
 					<th>Options</th>
 				</tr>
