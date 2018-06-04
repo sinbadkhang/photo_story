@@ -1,9 +1,33 @@
-// $(document).ready(function () {
+// GET QUIZ
+// function getQuiz () {
+// 	$.ajax({
+// 		url: 'quizGet.php',
+// 		method: 'POST',
+// 		dateType: 'json',
+// 	}).done(function (data) {
+// 		var question = [];
+
+// 		if (data.result) {
+// 			$.each(data.quizs, function(index, quizs){
+// 				question.push(new Question(quizs.question, [quizs.choice1, quizs.choice2, quizs.choice3, quizs.choice4], quiz.answer));				
+// 			})		
+// 		}	
+
+// 	}).fail(function (jqXHR, statusText, errorThrown) {
+// 		console.log('fail: '+ jqXHR.responseText);
+// 		console.log(statusText);
+// 		console.log(errorThrown);
+// 	})
+// } // get quiz
+
+$(document).ready(function () {
+	// getQuiz();
+
 	function populate(){
 		if (quiz.isEnded() == true) {
 			showScores();
-		}
-		else {
+
+		} else {
 			// show question
 			var questionTag = $('#question');
 			questionTag.html(quiz.getQuestionIndex().text);
@@ -22,14 +46,6 @@
 	};
 
 	function guess(id, guess) {
-	    // var button = $('#' + id);
-	    // button.click(function() {
-	    // 	quiz.guess(guess);
-	    // 	populate();
-	    // });
-
-	    // không dùng cách trên, lỗi questionIndex cộng thêm 2 thay vì 1
-
 	    var button = document.getElementById(id);
 	    button.onclick = function() {
 	    	quiz.guess(guess);
@@ -59,11 +75,10 @@
 		new Question("1 + 1 = ... ?", ["4", "2", "3", "1"], "2"),
 		new Question("8 9 10 ... ?", ["11", "13", "J", "7"], "J"),
 		new Question("Hello ... ?", ["World", "There, General Kenobi", "From The Other Side", "Is It Me You're Looking For?"], "World"),
-		new Question("Number ... ?", ["4", "0", "5", "9"], "4"),
-		new Question("No = ... ?", ["Nope", "Nah", "Not Yes", "Yesn't"], "Yesn't"),
 	];
+
 	// create quiz
 	var quiz = new Quiz(questions);
 	// display quiz
 	populate();
-// });
+});

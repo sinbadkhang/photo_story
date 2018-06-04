@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$answer = $_POST['answer'];
 		// IMAGE
 		$image = "image/".date('YmdHis').basename($_FILES['imageFile']['name']);
-		move_uploaded_file($_FILES['imageFile']['tmp_name'], "../".$image);
+		move_uploaded_file($_FILES['imageFile']['tmp_name'], $image);
 		// INSERT INTO
 		$sql = "INSERT INTO quiz (question, answer, image) VALUES ('".$question."','".$answer."','".$image."')";
 

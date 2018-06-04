@@ -1,0 +1,10 @@
+/*PRODUCT*/
+#product-container{
+	margin-top: 75px;
+}
+table img{
+	width: 175px;
+	height: auto;
+	object-fit: cover;
+	margin: 0 auto;
+}

@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$question = $_POST['question'];
 		$answer = $_POST['answer'];
 		// if NO IMAGE
-		if (basename($_FILES['imageFile']['name']) == "" || !basename($_FILES['imageFile']['name']) ) {
+		if (basename($_FILES['imageFile']['name']) === "" || !basename($_FILES['imageFile']['name']) ) {
 
 			$sql = "UPDATE quiz SET question='".$question."',answer='".$answer."' WHERE id='".$id."'";
 		// if CHOOSE IMAGE
 		}else{
 			$image = "image/".date('YmdHis').basename($_FILES['imageFile']['name']);
-			move_uploaded_file($_FILES['imageFile']['tmp_name'], "../".$image);
+			move_uploaded_file($_FILES['imageFile']['tmp_name'], $image);
 			// UPDATE SET
 			$sql = "UPDATE quiz SET question='".$question."',answer='".$answer."',image='".$image."' WHERE id='".$id."'";
 		}

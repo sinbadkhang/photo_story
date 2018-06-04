@@ -5,7 +5,7 @@ require 'config.php';
 if (isset($_POST['id']) ) {
 	$id = $_POST['id'];
 	// delete query
-	$sql = "DELETE FROM quiz WHERE id =".$id;
+	$sql = "DELETE FROM quiz WHERE id = ".$id;
 	$result = mysqli_query($conn, $sql);
 
 	if ($result) {

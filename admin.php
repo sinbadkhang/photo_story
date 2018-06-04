@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Products</title>
+	<title>Quizs Manage</title>
 	<!-- Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- DataTable CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/r-2.2.0/datatables.min.css"/>
 	<!-- My CSS -->
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="styleAdmin.css">
 </head>
 <body>
 	<div class="wraper">
@@ -18,9 +18,9 @@
 		<table border='1' align='center' class="table table-striped" id="product-table">
 			<thead>
 				<tr>
+					<th>Image</th>
 					<th>Question</th>
 					<th>Answer</th>
-					<th>Image</th>
 					<th>Options</th>
 				</tr>
 			</thead>
@@ -37,26 +37,23 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Product</h4>
+					<h4 class="modal-title"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Quiz</h4>
 				</div>
 				<div class="modal-body">
 					<form method='POST' action="<?php echo $_SERVER['PHP_SELF'] ?>" id='add-product-form'>
 						<input type="hidden" name="id" id="id">
 						<div class="form-group">
-							<label for="name">Product Name</label>
-							<input type="text" class="form-control view-input" name="product_name" id="name">
+							<label for="question">Question</label>
+							<input type="text" class="form-control view-input" name="question" id="question">
 						</div>
 						<div class="form-group">
-							<label for="code">Product Code</label>
-							<input type="text" class="form-control view-input" name="product_code" id="code">
+							<label for="code">Answer</label>
+							<input type="text" class="form-control view-input" name="answer" id="answer">
 						</div>
 						<div class="form-group">
-							<label for="category">Category</label>
-							<input type="text" class="form-control view-input" name="category" id="category">
-						</div>
-						<div class="form-group">
-							<label for="description">Description</label>
-							<textarea type="text" class="form-control view-input" name="description" id="description" rows="5"></textarea>
+							<label for="image">Image</label>
+							<input type="file" name="imageFile" id="addFile" onchange="readURL(this);" value="">
+							<img src="#" id="addimage" class="thumbnail img-preview">
 						</div>
 					</form>
 				</div>
@@ -76,31 +73,28 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Product</h4>
+					<h4 class="modal-title"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Quiz</h4>
 				</div>
 				<div class="modal-body">
-					<form method='POST' action="<?php echo $_SERVER['PHP_SELF'] ?>" id='edit-product-form'>
+					<form method='POST' action="<?php echo $_SERVER['PHP_SELF'] ?>" id='up-product-form'>
 						<input type="hidden" name="id" id="upid">
 						<div class="form-group">
-							<label for="name">Product Name</label>
-							<input type="text" class="form-control view-input" name="product_name" id="upname">
+							<label for="question">Question</label>
+							<input type="text" class="form-control view-input" name="question" id="upQuestion">
 						</div>
 						<div class="form-group">
-							<label for="code">Product Code</label>
-							<input type="text" class="form-control view-input" name="product_code" id="upcode">
+							<label for="answer">Answer</label>
+							<input type="text" class="form-control view-input" name="answer" id="upAnswer">
 						</div>
 						<div class="form-group">
-							<label for="category">Category</label>
-							<input type="text" class="form-control view-input" name="category" id="upcategory">
-						</div>
-						<div class="form-group">
-							<label for="description">Description</label>
-							<textarea type="text" class="form-control view-input" name="description" id="updescription" rows="5"></textarea>
+							<label for="image">Image</label>
+							<input type="file" name="imageFile" id="addFile" onchange="readURL(this);" value="">
+							<img src="" id="upimage" class="thumbnail img-preview">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-info" id='edit-btn' data-dismiss="modal">Edit</button>
+					<button type="submit" class="btn btn-info" id='up-btn' data-dismiss="modal">Edit</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -109,36 +103,36 @@
 	<!-- edit modal -->
 
 	<!-- DELETE MODAL -->
-	<div id="deleteModal" class="modal fade" role="dialog">
+	<div id="delModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"><i class="fa fa-trash" aria-hidden="true"></i> Delete Product</h4>
+					<h4 class="modal-title"><i class="fa fa-trash" aria-hidden="true"></i> Delete Quiz</h4>
 				</div>
 				<div class="modal-body">
-					<form method='POST' action="<?php echo $_SERVER['PHP_SELF'] ?>" id='delete-product-form'>
-						<input type="hidden" name="id" id="deleteid">
+					<form method='POST' action="<?php echo $_SERVER['PHP_SELF'] ?>" id='del-product-form'>
+						<input type="hidden" name="id" id="delid">
 						<div class="form-group">
-							<label for="name">Do you want to DELETE this?</label>
+							<label for="quiz">Do you want to DELETE this Quiz?</label>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-info" id='delete-btn' data-dismiss="modal">Yes</button>
+					<button type="submit" class="btn btn-info" id='del-btn' data-dismiss="modal">Yes</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- delete -->
+	<!-- delete modal -->
 
 	<!-- JQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="jquery-3.2.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  	<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/r-2.2.0/datatables.min.js"></script>
 	<!-- My Script -->
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="scriptAdmin.js"></script>
 </body>
 </html>
