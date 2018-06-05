@@ -154,6 +154,7 @@ $(document).ready(function(){
 		$('#upchoice1').val(choice1);
 		$('#upchoice2').val(choice2);
 		$('#upAnswer').val(answer);	
+
 		// show MODAL
 		$('#upModal').modal();
 	})
@@ -161,7 +162,6 @@ $(document).ready(function(){
 	$('#product-table tbody').on('click', '.del', function () {
 		var id = $(this).parents('tr').attr('id');
 		$('#delid').val(id);
-		console.log(id);
 		// show MODAL
 		$('#delModal').modal();
 	})

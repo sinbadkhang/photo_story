@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		$result = mysqli_query($conn, $sql);
+		$data['sql'] = $sql;
 		if ($result) {
 			$data['message'] = "Update successfully";
 			$data['result'] = true;

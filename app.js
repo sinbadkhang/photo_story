@@ -13,7 +13,7 @@ function getQuiz (questions) {
 
 	}).done(function (data) {
 		$.each(data.quizs, function(index, quizs){
-			var question = new Question(quizs.question, [quizs.choice1, quizs.choice2], quizs.answer);
+			var question = new Question(quizs.question, [quizs.choice1, quizs.choice2], quizs.answer, quizs.image);
 			
 			questions.push(question);
 		})
@@ -36,7 +36,9 @@ function populate(quiz){
 		// show question
 		var questionTag = $('#question');
 		questionTag.html(quiz.questions[quiz.questionIndex].text);
-
+		var img = $('.wrapper img');
+		img.attr('src', quiz.questions[quiz.questionIndex].image);
+		
 		// show choices
 		var choices = quiz.getQuestionIndex().choices;
 		for (var i = 0; i < choices.length; i++) {
@@ -66,6 +68,8 @@ function showProgress(quiz){
 	var progressTag = $('#progress');
 	progressTag.html('Question ' + currentQuizNum + " of " + quiz.questions.length);
 
+	var chancesTag = $('#chances');
+	chancesTag.html('Chance(s) left: ' + quiz.chances);
 };
 
 // show score
@@ -73,7 +77,17 @@ function showScores(quiz){
 	var gameOverHtml = "<h1>Result</h1>";
 		gameOverHtml += "<h2 id='score'>Your Scores: " + quiz.score + "</h2>";
 
+	var totalScore = quiz.questions.length*2;
+	if (quiz.score == totalScore) {
+		gameOverHtml += "<h2>Very good <br> You got it all correct!</h2>";
+	} else if (quiz.score >= totalScore/2) {
+		gameOverHtml += "<h2>Goodjob <br> You got half of it right.</h2>";
+	} else {
+		gameOverHtml += "<h2>You have to try harder.</h2>";
+	}
+
 	var quizTag = $('#quiz');
 	quizTag.html(gameOverHtml);
+	$('.wrapper').attr('hidden', true);
 	
 };

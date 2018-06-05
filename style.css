@@ -6,11 +6,14 @@ body {
 	width: 500px;
 	height: 500px;
 	margin: 0 auto;
+	position: absolute;
+	right: 20%;
+	top: 5%;
 	background-color: #1B998B;
 	padding: 10px 50px 50px 50px;
 	border-radius: 50px;
 	border: 2px solid #cbcbcb;
-	box-shadow: 10px 15px 5px #cbcbcb;
+	box-shadow: 5px 5px 5px #cbcbcb;
 }
 
 .grid h1 {
@@ -45,12 +48,19 @@ body {
 }
 
 #score {
-	color: #5a6772;
+	color: #fff;
 	text-align: center;
-	font-size: 30px;
+	font-size: 50px;
 }
+
+#score + h2 {
+	color: #fff;
+	text-align: center;
+	font-size: 50px;
+}
+
 #progress {
-	color: #2b2b2b;
+	color: #2E294E;
 	font-size: 20px;
 }
 
@@ -64,8 +74,22 @@ body {
 }
 
 .wrapper {
-	width: 200px;
+	width: 300px;
 	height: 300px;
 	margin: 0 auto;
-	background-color: 
+	position: absolute;
+	left: 10%;
+	top: 15%;
+	background-color: #1B998B;
+	padding: 20px 10px;
+	border-radius: 50px;
+	border: 2px solid #cbcbcb;
+}
+
+.wrapper img {
+	width: 90%;
+	height: auto;
+	margin: 15% auto;
+	border-radius: 5%; 
+	border: 3px solid #2E294E;
 }
