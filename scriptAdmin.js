@@ -28,10 +28,8 @@ function getQuiz () {
 			rows += "<td class='image'><img class='thumbnail' src='image/"+imagePath+"'></td>";
 			rows += "<td class='question'>"+quizs.question+'</td>';
 			
-			rows += "<td class='question'>"+quizs.choice1+'</td>';
-			rows += "<td class='question'>"+quizs.choice2+'</td>';
-			rows += "<td class='question'>"+quizs.choice3+'</td>';
-			rows += "<td class='question'>"+quizs.choice4+'</td>';
+			rows += "<td class='choice1'>"+quizs.choice1+'</td>';
+			rows += "<td class='choice2'>"+quizs.choice2+'</td>';
 			
 			rows += "<td class='answer'>"+quizs.answer+'</td>';
 			rows += '<td>';
@@ -146,11 +144,15 @@ $(document).ready(function(){
 		var id = $(this).parents('tr').attr('id');
 		var image = $(this).parents('tr').find('.image .thumbnail').attr('src');
 		var question = $(this).parents('tr').find('.question').text();
+		var choice1 = $(this).parents('tr').find('.choice1').text();
+		var choice2 = $(this).parents('tr').find('.choice2').text();
 		var answer = $(this).parents('tr').find('.answer').text();		
 		// SET DATA	
 		$('#upid').val(id);
 		$('#upimage').attr('src', image).width(250).height(150);
 		$('#upQuestion').val(question);
+		$('#upchoice1').val(choice1);
+		$('#upchoice2').val(choice2);
 		$('#upAnswer').val(answer);	
 		// show MODAL
 		$('#upModal').modal();

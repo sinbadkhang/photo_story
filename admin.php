@@ -22,8 +22,6 @@
 					<th>Question</th>
 					<th>Choice 1</th>
 					<th>Choice 2</th>
-					<th>Choice 3</th>
-					<th>Choice 4</th>
 					<th>Answer</th>
 					<th>Options</th>
 				</tr>
@@ -49,6 +47,14 @@
 						<div class="form-group">
 							<label for="question">Question</label>
 							<input type="text" class="form-control view-input" name="question" id="question">
+						</div>
+						<div class="form-group">
+							<label for="choice1">Choice 1</label>
+							<input type="text" class="form-control view-input" name="choice1" id="choice1">
+						</div>
+						<div class="form-group">
+							<label for="choice2">Choice 2</label>
+							<input type="text" class="form-control view-input" name="choice2" id="choice2">
 						</div>
 						<div class="form-group">
 							<label for="code">Answer</label>
@@ -85,6 +91,14 @@
 						<div class="form-group">
 							<label for="question">Question</label>
 							<input type="text" class="form-control view-input" name="question" id="upQuestion">
+						</div>
+						<div class="form-group">
+							<label for="choice1">Choice 1</label>
+							<input type="text" class="form-control view-input" name="choice1" id="upchoice1">
+						</div>
+						<div class="form-group">
+							<label for="choice2">Choice 2</label>
+							<input type="text" class="form-control view-input" name="choice2" id="upchoice2">
 						</div>
 						<div class="form-group">
 							<label for="answer">Answer</label>
